@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/joho/godotenv"
@@ -29,6 +30,9 @@ func GenerateEDSA(msg []string) (signature []byte, err error) {
 	if err != nil {
 		return signature, fmt.Errorf("os load env key err: %v", err)
 	}
+
+	convertedValue := common.HexToHash(hexutil.Encode(signature))
+	fmt.Println(convertedValue)
 
 	fmt.Println(hexutil.Encode(signature))
 
